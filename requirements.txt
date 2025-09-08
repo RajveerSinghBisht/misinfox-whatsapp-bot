@@ -1,2 +1,3 @@
-flask
-twilio
+Flask==2.3.2
+twilio==8.10.0
+
