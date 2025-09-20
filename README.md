@@ -84,7 +84,7 @@ Get **MisinfoX** up and running on your system in just a few steps.
 
 ```
 
-git clone [https://github.com/](https://github.com/)\<your-username\>/misinfox.git
+git clone https://github.com/RajveerSinghBisht/misinfox-whatsapp-bot
 cd misinfox
 
 ```
