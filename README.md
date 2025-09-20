@@ -1,6 +1,6 @@
 # 🚀 MisinfoX — The WhatsApp Fact-Checking Bot
 
-**MisinfoX** is an AI-powered WhatsApp bot designed to fight misinformation. Using the power of **Google Custom Search** and **Google Gemini AI**, it provides **quick, reliable, and concise fact-checks** for messages, forwarded content, and circulating claims\<comment-tag id="1"\> directly within your chats.\</comment-tag id="1" text="This phrase is a bit redundant as the first sentence already establishes it is a 'WhatsApp bot'. Removing it tightens the introduction and makes the opening more impactful." type="suggestion"\>
+**MisinfoX** is an AI-powered WhatsApp bot designed to fight misinformation. Using the power of **Google Custom Search**, **Google Cloud Platform**and **Vertes AI**, it provides **quick, reliable, and concise fact-checks** for messages, forwarded content, and circulating claims directly within your chats.
 
 -----
 
