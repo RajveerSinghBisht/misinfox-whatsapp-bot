@@ -16,3 +16,6 @@ Thumbs.db
 # PyCharm / VSCode settings (if any)
 .idea/
 .vscode/
+
+#My API Credentials
+.env
