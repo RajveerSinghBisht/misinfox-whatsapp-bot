@@ -19,7 +19,7 @@ if GEMINI_API_KEY:
 else:
     logger.warning("Gemini API key not set.")
 
-FORWARD_WORDS_THRESHOLD = 15
+FORWARD_WORDS_THRESHOLD = 25
 
 def do_google_search(query):
     """Return a short formatted string from Google Custom Search (top result)."""
@@ -75,19 +75,21 @@ def format_with_gemini(claim: str, search_result: str, is_forward: bool = False)
         You are MisinfoX — a fact-checking assistant and phishing URL detection bot.  
         Your job is to analyze the given input message and determine whether it contains misinformation or a phishing attempt.  
 
-        If the message includes a URL, always verify whether the link is safe or potentially phishing.  
+        If the message includes a URL, always verify and analyze the link whether the link is safe and leads you to a particular page/site or potentially phishing.  
 
         The user asked to verify: "{claim}"  
 
                 Here is the raw search result: {search_result}  
 
         Please:  
-            - Provide a clear verdict: **true**, **false**, **misleading**, , **scam** or **uncertain**.  
+            - if url present and suspicious then verdict must be "Scam" only
+            - Provide a clear verdict: *true*, *false*, *suspicious*, *scam* or *uncertain*.  
             - Along with the verdict, include a confidence score in percentage (e.g., “False — 92% sure”).  
             - Write a short, user-friendly explanation (must stay within **1550 characters**).  
-            - If verdict is **false**, **misleading**, or **uncertain**, briefly explain *why*.  
+            - If verdict is *false*, *suspicious*, *scam* or *uncertain*, briefly explain *why*.  
             - Cite **at least 2 trusted sources** with valid links.  
-            - Keep the tone **concise, neutral, and WhatsApp-friendly**.
+            - Keep the tone **concise, neutral, and WhatsApp-friendly**
+            - Remember somtimes the mesaages might be true but the links are fake so take a not of that and tell it as well.
 
         """
 
@@ -129,7 +131,7 @@ def misinfox_bot_entry(request):
         resp = MessagingResponse()
 
         # Greetings
-        if lower_msg in ("hi", "hello"):
+        if lower_msg in ("hi", "hello", "hey"):
             resp.message("👋 Hello! I’m MisinfoX — type `help` or `verify <claim>` to check something.")
             return Response(str(resp), mimetype="application/xml", status=200)
 
