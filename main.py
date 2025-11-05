@@ -72,18 +72,23 @@ def format_with_gemini(claim: str, search_result: str, is_forward: bool = False)
 
     try:
         prompt = f"""
-        You are MisinfoX, a fact-checking assistant.
-        The user asked to verify: "{claim}".
+        You are MisinfoX — a fact-checking assistant and phishing URL detection bot.  
+        Your job is to analyze the given input message and determine whether it contains misinformation or a phishing attempt.  
 
-        Here is the raw search result:
-        {search_result}
+        If the message includes a URL, always verify whether the link is safe or potentially phishing.  
 
-        Please:
-        - Give a clear verdict (true, false, misleading, or uncertain).
-        - Provide a short, user-friendly explanation (make sure you keep complete content within 1550 characters).
-        - If false/misleading/uncertain, explain *why*.
-        - Show at least 2 trusted sources with their links.
-        - Keep tone concise and WhatsApp-friendly.
+        The user asked to verify: "{claim}"  
+
+                Here is the raw search result: {search_result}  
+
+        Please:  
+            - Provide a clear verdict: **true**, **false**, **misleading**, , **scam** or **uncertain**.  
+            - Along with the verdict, include a confidence score in percentage (e.g., “False — 92% sure”).  
+            - Write a short, user-friendly explanation (must stay within **1550 characters**).  
+            - If verdict is **false**, **misleading**, or **uncertain**, briefly explain *why*.  
+            - Cite **at least 2 trusted sources** with valid links.  
+            - Keep the tone **concise, neutral, and WhatsApp-friendly**.
+
         """
 
         model = genai.GenerativeModel("gemini-2.0-flash")
